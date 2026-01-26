@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Budva Yönetim Paneli</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body class="container py-5">
+    <div class="d-flex justify-content-between mb-4">
+        <h2>☕ Budva Menü Yönetimi</h2>
+        <a href="/" class="btn btn-secondary">Siteye Dön</a>
+    </div>
+
+    <div class="card mb-4 bg-light">
+        <div class="card-body">
+            <h5 class="card-title">Yeni Ürün Ekle</h5>
+            <form action="/admin/ekle" method="POST" class="row">
+                <div class="col-md-3">
+                    <input type="text" name="ad" class="form-control" placeholder="Ürün Adı" required>
+                </div>
+                <div class="col-md-2">
+                    <input type="number" name="fiyat" class="form-control" placeholder="Fiyat" required>
+                </div>
+                <div class="col-md-3">
+                    <select name="kategori" class="form-control">
+                        <option value="espresso">Espresso Bazlı</option>
+                        <option value="matcha">Matcha Bar</option>
+                        <option value="mesrubat">Meşrubatlar</option>
+                        <option value="mocktail">Mocktails</option>
+                        <option value="atistirmalik">Yiyecek / Atıştırmalık</option>
+                        <option value="sicak_icecek">Sıcak İçecekler</option>
+                        <option value="soguk_kahve">Soğuk Kahve</option>
+                        <option value="tatli">Tatlılar</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <input type="text" name="resim" class="form-control" placeholder="/img/kahve.jpg" value="/img/">
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-success w-100">EKLE</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>Ürün</th>
+                <th>Kategori</th>
+                <th>Fiyat</th>
+                <th>Güncelle</th>
+                <th>Sil</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% menu.forEach(function(urun) { %>
+                <tr>
+                    <td>
+                        <%= urun.ad %>
+                    </td>
+                    <td><span class="badge badge-info"><%= urun.kategori %></span></td>
+                    <td>
+                        <%= urun.fiyat %> ₺</td>
+
+                    <td>
+                        <form action="/admin/guncelle/<%= urun.id %>" method="POST" class="form-inline">
+                            <input type="number" name="yeniFiyat" class="form-control form-control-sm mr-2" style="width: 70px;" value="<%= urun.fiyat %>">
+                            <button type="submit" class="btn btn-warning btn-sm">Güncelle</button>
+                        </form>
+                    </td>
+
+                    <td>
+                        <form action="/admin/sil/<%= urun.id %>" method="POST">
+                            <button type="submit" class="btn btn-danger btn-sm">Sil</button>
+                        </form>
+                    </td>
+                </tr>
+                <% }); %>
+        </tbody>
+    </table>
+</body>
+
+</html>

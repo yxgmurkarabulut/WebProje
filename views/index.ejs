@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budva Cafe | Anasayfa</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="cart-icon-container" onclick="sepetiAc()">
+            <i class="fas fa-shopping-basket"></i>
+            <span class="cart-count" id="sepetSayisi">0</span>
+        </div>
+    </nav>
+
+    <header class="hero-section">
+
+        <div class="hero-content">
+
+            <div style="
+                width: 180px; 
+                height: 180px; 
+                border-radius: 50%; 
+                border: 5px solid rgba(255,255,255,0.6); 
+                overflow: hidden; /* Taşanı gizle ki yuvarlak kalsın */
+                margin: 0 auto 20px auto; /* Ortala ve alttan boşluk ver */
+                background: white;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            ">
+                <img src="/img/logo.png" alt="Budva Logo" style="
+                    width: 100%; 
+                    height: 100%; 
+                    object-fit: cover; 
+                    transform: scale(1.16); 
+                ">
+            </div>
+            <h1 class="main-title">BUDVA CAFE</h1>
+
+            <div class="info-box">
+                <div class="info-text">
+                    <i class="fas fa-map-marker-alt"></i> Yıldırım Mahallesi Tutin Sokak No:8 Bayrampaşa / İstanbul
+                </div>
+                <div class="info-text">
+                    <i class="far fa-clock"></i> Her Gün: 10:00 - 00:00
+                </div>
+            </div>
+
+            <a href="#kategoriler" class="cta-button">
+                Menüyü Keşfet <i class="fas fa-arrow-down"></i>
+            </a>
+        </div>
+    </header>
+
+    <div class="category-grid" id="kategoriler">
+
+        <a href="/espresso-bazli" class="menu-item" style="text-decoration:none; color:inherit;">
+            <img src="/img/espressobazlı.jpg" alt="Espresso">
+            <div class="menu-text" style="padding-bottom:20px;">
+                <div style="font-size:18px; font-weight:bold;">Espresso Bazlılar</div>
+                <div style="font-size:14px; color:#666;">Gerçek kahve tutkusu</div>
+            </div>
+        </a>
+
+        <a href="/soguk-icecekler" class="menu-item" style="text-decoration:none; color:inherit;">
+            <img src="/img/sogukicecekler.jpg" alt="Soğuk İçecekler">
+            <div class="menu-text" style="padding-bottom:20px;">
+                <div style="font-size:18px; font-weight:bold;">Soğuk İçecekler</div>
+                <div style="font-size:14px; color:#666;">Buz gibi ferahlık</div>
+            </div>
+        </a>
+
+        <a href="/sicak-icecekler" class="menu-item" style="text-decoration:none; color:inherit;">
+            <img src="/img/sıcakicecekler.jpg" alt="Sıcak İçecekler">
+            <div class="menu-text" style="padding-bottom:20px;">
+                <div style="font-size:18px; font-weight:bold;">Sıcak İçecekler</div>
+                <div style="font-size:14px; color:#666;">İçinizi ısıtan lezzet</div>
+            </div>
+        </a>
+
+        <a href="/matcha" class="menu-item" style="text-decoration:none; color:inherit;">
+            <img src="/img/matchabar.jpg" alt="Matcha Bar">
+            <div class="menu-text" style="padding-bottom:20px;">
+                <div style="font-size:18px; font-weight:bold;">Matcha Bar</div>
+                <div style="font-size:14px; color:#666;">Doğanın yeşil enerjisi</div>
+            </div>
+        </a>
+
+        <a href="/tatlilar" class="menu-item" style="text-decoration:none; color:inherit;">
+            <img src="/img/tatlılar.jpg" alt="Tatlılar">
+            <div class="menu-text" style="padding-bottom:20px;">
+                <div style="font-size:18px; font-weight:bold;">Tatlılar</div>
+                <div style="font-size:14px; color:#666;">Mutluluk veren tatlar</div>
+            </div>
+        </a>
+
+        <a href="/mesrubatlar" class="menu-item" style="text-decoration:none; color:inherit;">
+            <img src="/img/meşrubatlar.jpg" alt="Meşrubatlar">
+            <div class="menu-text" style="padding-bottom:20px;">
+                <div style="font-size:18px; font-weight:bold;">Meşrubatlar</div>
+                <div style="font-size:14px; color:#666;">Serinleten klasik seçimler</div>
+            </div>
+        </a>
+
+        <a href="/sandvicler" class="menu-item" style="text-decoration:none; color:inherit;">
+            <img src="/img/sandvicler.jpg" alt="Sandviçler">
+            <div class="menu-text" style="padding-bottom:20px;">
+                <div style="font-size:18px; font-weight:bold;">Atıştırmalıklar</div>
+                <div style="font-size:14px; color:#666;">Çıtır ve doyurucu</div>
+            </div>
+        </a>
+
+        <a href="/mocktails" class="menu-item" style="text-decoration:none; color:inherit;">
+            <img src="/img/mocktails.jpg" alt="Mocktails">
+            <div class="menu-text" style="padding-bottom:20px;">
+                <div style="font-size:18px; font-weight:bold;">Mocktails</div>
+                <div style="font-size:14px; color:#666;">Özel imza karışımlar</div>
+            </div>
+        </a>
+
+    </div>
+
+    <footer style="text-align:center; padding: 40px; margin-top:50px; background-color:#333; color:#aaa; font-size:14px;">
+        <p style="margin-bottom:10px; font-size:16px; color:#fff;">BUDVA CAFE</p>
+        <p>Bayrampaşa / İSTANBUL</p>
+        <p>© 2026 Tüm hakları saklıdır.</p>
+    </footer>
+
+    <div id="bildirim-alani"></div>
+
+    <div id="sepetModal" class="cart-modal">
+        <div class="cart-content">
+            <span class="close-cart" onclick="sepetiKapat()">&times;</span>
+            <h2>Sepetim</h2>
+            <div id="sepetIcerik" class="cart-items"></div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:20px;">
+                <span style="font-size:18px; font-weight:600;">Toplam:</span>
+                <span id="sepetToplam" class="total-price">0</span>
+            </div>
+            <button onclick="siparisVer()" class="checkout-btn">Siparişi Tamamla</button>
+        </div>
+    </div>
+    <section id="iletisim" style="padding: 80px 20px; background-color: #f4f7f5;">
+        <div style="max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; background: white; padding: 40px; border-radius: 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.05);">
+
+            <div>
+                <h2 style="color: #7d9e83; font-size: 32px; margin-bottom: 20px;">Bize Ulaşın</h2>
+                <p style="color: #666; line-height: 1.6; margin-bottom: 30px;">Bir sorunuz mu var veya özel bir etkinlik mi planlıyorsunuz? Formu doldurun, size hemen dönüş yapalım.</p>
+
+                <div style="margin-bottom: 15px; color: #555;">
+                    <i class="fas fa-phone-alt" style="color: #8fa89b; margin-right: 10px;"></i> +90 (212) 123 12 34
+                </div>
+                <div style="margin-bottom: 15px; color: #555;">
+                    <i class="fas fa-envelope" style="color: #8fa89b; margin-right: 10px;"></i> info@budvacafe.com
+                </div>
+                <div style="color: #555;">
+                    <i class="fab fa-instagram" style="color: #8fa89b; margin-right: 10px;"></i> @budvacafe
+                </div>
+            </div>
+            <form id="anaIletisimFormu" style="display: flex; flex-direction: column; gap: 15px;">
+
+                <input type="text" id="form-ad" placeholder="Adınız" required style="padding: 12px; border: 1px solid #eee; border-radius: 10px; outline: none; background: #fafafa;">
+
+                <input type="tel" id="form-tel" placeholder="Telefon" required style="padding: 12px; border: 1px solid #eee; border-radius: 10px; outline: none; background: #fafafa;">
+
+                <select id="form-tur" style="padding: 12px; border: 1px solid #eee; border-radius: 10px; background: #fafafa; color: #666;">
+                    <option value="mesaj">Sadece Mesaj</option>
+                    <option value="rezervasyon">Rezervasyon Talebi</option>
+                </select>
+
+                <textarea id="form-mesaj" placeholder="Mesajınız..." rows="4" style="padding: 12px; border: 1px solid #eee; border-radius: 10px; outline: none; background: #fafafa; resize: none;"></textarea>
+
+                <div id="basari-mesaji" style="display:none; color: #2e7d32; font-weight: bold; text-align: center; padding: 10px; background: #e8f5e9; border-radius: 10px;">
+                    Mesajınız alındı, teşekkürler! ✅
+                </div>
+
+                <button type="button" onclick="anaFormuGonder()" style="padding: 15px; background: #8fa89b; color: white; border: none; border-radius: 10px; cursor: pointer; font-weight: 600; transition: 0.3s;">
+                    Gönder <i class="fas fa-paper-plane" style="margin-left: 8px;"></i>
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        function anaFormuGonder() {
+            const ad = document.getElementById('form-ad').value;
+            const tel = document.getElementById('form-tel').value;
+            const tur = document.getElementById('form-tur').value;
+            const mesaj = document.getElementById('form-mesaj').value;
+            const sonucKutusu = document.getElementById('basari-mesaji');
+
+            if (!ad || !tel) {
+                alert("Lütfen adınızı ve telefonunuzu yazınız.");
+                return;
+            }
+            fetch('/iletisim', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        isim: ad,
+                        email: tel,
+                        mesaj: tur + " - " + mesaj
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        sonucKutusu.style.display = 'block';
+                        document.getElementById('anaIletisimFormu').reset();
+                        setTimeout(() => {
+                            sonucKutusu.style.display = 'none';
+                        }, 3000);
+                    }
+                })
+                .catch(err => {
+                    console.error("Hata:", err);
+                    alert("Bir hata oluştu.");
+                });
+        }
+    </script>
+
+    <script src="/js/script.js"></script>
+</body>
+
+</html>

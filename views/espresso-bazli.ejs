@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Espresso & Soğuk Kahveler | Budva Cafe</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+       .kategori-baslik {
+            text-align: left;   
+            font-size: 22px;
+            font-weight: 700;
+            margin: 30px 0 15px 20px;  
+            color: #4a4a4a;
+            text-transform: uppercase;
+            border-bottom: 2px solid #ddd;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="header">
+        <a href="/" style="text-decoration:none; color:black; font-size:14px; position:absolute; left:20px; top:45px;">
+            <i class="fas fa-chevron-left"></i> Geri
+        </a>
+
+        <h1 class="brand-name">BUDVA</h1>
+        <p style="font-size:14px; color:#888;">Espresso Bazlılar & Soğuk Kahveler</p>
+
+        <div class="cart-icon-container" onclick="sepetiAc()">
+            <i class="fas fa-shopping-basket"></i>
+            <span class="cart-count" id="sepetSayisi">0</span>
+        </div>
+    </header>
+
+    <div style="width:100%; text-align:left; padding-left: 20px; margin-top: 30px;">
+        <h2 class="kategori-baslik">Sıcak Kahveler</h2>
+    </div>
+
+    <div class="menu-grid">
+        <% if (typeof sicak !== 'undefined' && sicak.length > 0) { %>
+            <% sicak.forEach(function(urun) { %>
+                <div class="menu-item">
+                    <img src="<%= urun.resim ? urun.resim : '/img/logo.png' %>" alt="<%= urun.ad %>">
+                    <div class="menu-text">
+                        <div style="font-weight:600;"><%= urun.ad %></div>
+                        <div style="font-size:15px; margin-top:22px; font-weight:bold;"><%= urun.fiyat %> ₺</div>
+                        <button class="add-btn" onclick="urunSecenekleriniAc('<%= urun.ad %>', <%= urun.fiyat %>, '<%= urun.resim %>')">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            <% }); %>
+        <% } else { %>
+            <p style="text-align:center; width:100%; color:#999;">Sıcak kahveler yüklenemedi.</p>
+        <% } %>
+    </div>
+
+
+    <div style="width:100%; text-align:left; padding-left: 20px; margin-top: 30px;">
+        <h2 class="kategori-baslik">Soğuk Kahveler</h2>
+    </div>
+
+    <div class="menu-grid" style="margin-bottom: 50px;">
+        <% if (typeof soguk !== 'undefined' && soguk.length > 0) { %>
+            <% soguk.forEach(function(urun) { %>
+                <div class="menu-item">
+                    <img src="<%= urun.resim ? urun.resim : '/img/logo.png' %>" alt="<%= urun.ad %>">
+                    <div class="menu-text">
+                        <div style="font-weight:600;"><%= urun.ad %></div>
+                        <div style="font-size:15px; margin-top:22px; font-weight:bold;"><%= urun.fiyat %> ₺</div>
+                        <button class="add-btn" onclick="urunSecenekleriniAc('<%= urun.ad %>', <%= urun.fiyat %>, '<%= urun.resim %>')">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            <% }); %>
+        <% } else { %>
+            <p style="text-align:center; width:100%; color:#999;">Soğuk kahveler yüklenemedi.</p>
+        <% } %>
+    </div>
+
+
+    <div id="sepetModal" class="cart-modal">
+        <div class="cart-content">
+            <span class="close-btn" onclick="sepetiKapat()">&times;</span>
+            <h2>Sepetim</h2>
+            <div id="sepetIcerik" class="cart-items"></div>
+            <div style="display:flex; justify-content:space-between; margin: 20px 0; border-top: 1px solid #eee; padding-top: 15px;">
+                <span style="font-size:18px; font-weight:600;">Toplam:</span>
+                <span id="sepetToplam" class="total-price">0</span> ₺
+            </div>
+            <button class="checkout-btn" onclick="siparisVer()">Siparişi Tamamla</button>
+        </div>
+    </div>
+
+    <div id="urunSecenekModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); z-index: 9999; backdrop-filter: blur(5px);">
+        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; width: 90%; max-width: 400px; max-height: 90vh; border-radius: 24px; box-shadow: 0 20px 60px rgba(0,0,0,0.4); display: flex; flex-direction: column; overflow: hidden;">
+            <span onclick="secenekleriKapat()" style="position: absolute; right: 20px; top: 15px; font-size: 28px; color: #555; cursor: pointer; z-index: 10;">&times;</span>
+
+            <div style="text-align: center; padding: 25px 25px 10px 25px; background: #fff; z-index: 5;">
+                <img id="modal-urun-resim" src="" style="width: 80px; height: 80px; object-fit: cover; border-radius: 50%; margin-bottom: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                <h2 id="modal-urun-adi" style="color: #333; font-size: 20px; margin: 0;">Kahve Adı</h2>
+                <p id="modal-baz-fiyat" style="color: #8fa89b; font-weight: 700; font-size: 18px; margin-top: 5px;">0 ₺</p>
+            </div>
+
+            <div class="modal-body" style="padding: 10px 25px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px;">
+                <div class="option-group">
+                    <label>Boy Seçimi</label>
+                    <select id="modal-boy">
+                        <option value="0">Küçük Boy (Standart)</option>
+                        <option value="15">Orta Boy (+15 ₺)</option>
+                        <option value="25">Büyük Boy (+25 ₺)</option>
+                    </select>
+                </div>
+
+                <div class="option-group">
+                    <label>Süt Tercihi</label>
+                    <select id="modal-sut">
+                        <option value="0">Normal Süt</option>
+                        <option value="0">Yarım Yağlı</option>
+                        <option value="0">Laktozsuz Süt (Ücretsiz)</option>
+                        <option value="20">Yulaf Sütü (+20 ₺)</option>
+                        <option value="20">Badem Sütü (+20 ₺)</option>
+                        <option value="20">Soya Sütü (+20 ₺)</option>
+                    </select>
+                </div>
+
+                <div class="option-group">
+                    <label>Espresso Sertliği</label>
+                    <select id="modal-espresso">
+                        <option value="0">Standart</option>
+                        <option value="0">Yumuşak İçim (Tek Shot)</option>
+                        <option value="25">Extra Shot (Double) (+25 ₺)</option>
+                        <option value="0">Kafeinsiz (Decaf)</option>
+                    </select>
+                </div>
+
+                <div class="option-group">
+                    <label>Şeker / Tatlandırıcı</label>
+                    <select id="modal-seker">
+                        <option value="0">Şekersiz</option>
+                        <option value="0">Az Şekerli</option>
+                        <option value="0">Orta Şekerli </option>
+                        <option value="0">Esmer Şeker</option>
+                        <option value="0">Tatlandırıcı</option>
+                    </select>
+                </div>
+
+                <div class="option-group">
+                    <label>Ekstra Aroma (+15 ₺)</label>
+                    <select id="modal-surup">
+                        <option value="0">İstemiyorum</option>
+                        <option value="15">Vanilya</option>
+                        <option value="15">Karamel</option>
+                        <option value="15">Fındık</option>
+                        <option value="15">Beyaz Çikolata</option>
+                    </select>
+                </div>
+
+                <div style="padding: 20px 25px; background: white; border-top: 1px solid #eee; z-index: 5;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 10px;">
+                        <span style="font-size: 14px; color: #666;">Toplam Tutar:</span>
+                        <span style="font-weight: bold; font-size: 22px; color: #333;"><span id="modal-toplam-fiyat">0</span> ₺</span>
+                    </div>
+
+                    <button onclick="secimleriOnayla()" style="width: 100%; padding: 14px; background: #333; color: white; border: none; border-radius: 12px; font-weight: 600; cursor: pointer; font-size: 16px;">
+                        SEPETE EKLE
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="bildirim-kutusu">Sepete Eklendi!</div>
+
+    <script src="/js/script.js"></script>
+</body>
+
+</html>

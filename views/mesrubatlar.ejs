@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meşrubatlar | Budva Cafe</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <header class="header">
+        <a href="/" style="text-decoration:none; color:black; font-size:14px; position:absolute; left:20px; top:45px;">
+            <i class="fas fa-chevron-left"></i> Geri
+        </a>
+
+        <h1 class="brand-name">BUDVA</h1>
+        <p style="font-size:14px; color:#555; font-weight:bold;">Meşrubatlar & Enerji</p>
+
+        <div class="cart-icon-container" onclick="sepetiAc()">
+            <i class="fas fa-shopping-basket"></i>
+            <span class="cart-count" id="sepetSayisi">0</span>
+        </div>
+    </header>
+
+    <div class="menu-grid">
+        <% if (urunler && urunler.length > 0) { %>
+            <% urunler.forEach(function(urun) { %>
+                <div class="menu-item">
+                    <img src="<%= urun.resim ? urun.resim : '/img/logo.png' %>" alt="<%= urun.ad %>">
+
+                    <div class="menu-text">
+                        <div style="font-weight:600;">
+                            <%= urun.ad %>
+                        </div>
+
+                        <div style="font-size:15px; margin-top:22px; font-weight:bold;">
+                            <%= urun.fiyat %> ₺</div>
+
+                        <button class="add-btn" onclick="sepeteEkle('<%= urun.ad %>', <%= urun.fiyat %>, '<%= urun.resim %>')">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+                <% }); %>
+                    <% } else { %>
+                        <div style="grid-column: 1/-1; text-align: center; padding: 20px;">
+                            <p>Henüz meşrubat eklenmemiş.</p>
+                        </div>
+                        <% } %>
+    </div>
+
+    <div id="bildirim-kutusu">Sepete Eklendi!</div>
+
+    <script src="/js/script.js"></script>
+</body>
+
+</html>

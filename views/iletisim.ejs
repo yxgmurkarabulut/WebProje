@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İletişim | Budva</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <header class="header">
+        <a href="/" style="text-decoration:none; color:black; font-size:14px; position:absolute; left:20px; top:45px;">
+            <i class="fas fa-chevron-left"></i> Geri
+        </a>
+        <h1 class="brand-name">BUDVA</h1>
+        <p style="font-size:14px; color:#888;">Rezervasyon & İletişim</p>
+    </header>
+
+    <div class="search-area">
+        <form id="contactForm" style="display: flex; flex-direction: column; gap: 15px;">
+
+            <input type="text" id="name" placeholder="Adınız Soyadınız" class="search-box">
+
+            <input type="tel" id="telefon" placeholder="Telefon Numaranız (05xxxxxxxxx)" class="search-box">
+
+            <textarea id="message" placeholder="Mesajınız veya Rezervasyon Notunuz" class="search-box" style="height: 100px;"></textarea>
+
+            <p id="error-msg" style="color: red; font-size: 14px; display: none; text-align:center;"></p>
+
+            <button type="submit" style="background: #000; color: #fff; padding: 15px; border-radius: 12px; border: none; font-weight: 600; cursor: pointer; font-size:16px;">Gönder</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const telefon = document.getElementById('telefon').value;
+            const message = document.getElementById('message').value;
+            const msgArea = document.getElementById('error-msg');
+            if (name === "" || telefon === "") {
+                msgArea.style.color = "red";
+                msgArea.textContent = "Lütfen Adınızı ve Telefon Numaranızı yazınız!";
+                msgArea.style.display = "block";
+            } else {
+                msgArea.style.color = "green";
+                msgArea.textContent = "Mesajınız alındı! Sizinle iletişime geçeceğiz.";
+                msgArea.style.display = "block";
+                this.reset();
+                console.log("Gönderilen:", name, telefon, message);
+            }
+        });
+    </script>
+
+</body>
+
+</html>
