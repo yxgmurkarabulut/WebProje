@@ -21,6 +21,7 @@
   "homepage": "https://github.com/yxgmurkarabulut/WebProje#readme",
   "dependencies": {
     "ejs": "^4.0.1",
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "express-session": "^1.19.0"
   }
 }
